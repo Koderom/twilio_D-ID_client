@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=roboto:300,400,500,700,900" rel="stylesheet" />
+    <title>Avatar Twilio</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'Roboto', sans-serif;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            background: rgb(36, 36, 36);
+        }
+        #chat-container{
+            box-sizing: content-box;
+            width: 25%;
+            height: 90%;
+            margin: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            border-radius: 2rem;
+            border: 1px solid rgb(107, 107, 107);
+            
+        }
+        #messages-container{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+        }
+        #video-container{
+            width: 75%;
+            height: 90%;
+            display: flex; 
+            
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin: 2rem;
+            border-radius: 2rem;
+            border: 1px solid rgb(107, 107, 107);
+            background: #74c0c0;
+        }
+        video{
+            /* width: 100%; */
+            height: 100%;
+        }
+        img{
+            height: 100%;
+        }
+        .message{
+            font-size: 11px;
+            font-weight: 100;
+            color: white;
+            margin: 0.4rem 1rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: rgba(116, 116, 116, 0.445);
+        }
+        .chat-title{
+            padding: 1rem;
+            border-bottom: 1px solid #6b6b6b;
+            font-weight: 500;
+            color: white;
+        }
+        #auto-rep{
+            font-size: 14px;
+            color: rgb(0, 0, 0);
+            background: rgba(255, 255, 255, 0.829);
+            border: 0;
+            padding: 0.5rem;
+            margin: 1rem;
+            justify-self: end;
+            border-radius: 0.5rem;
+        }
+        #auto-rep:disabled{
+            /* color: rgba(0, 0, 0, 0.432); */
+            background: rgba(196, 196, 196, 0.829);
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="video-container">
+        <img id="presenter-image" src="https://clips-presenters.d-id.com/amy/jcwCkr1grs/uM00QMwJ9x/image.png" alt="">
+        <video src="" id="video-rep"></video>
+    </div>
+    <div id="chat-container">
+        <div class="chat-title">Mensajes recibidos: </div>
+        <div id="messages-container">
+            
+        </div>
+        <button id="auto-rep">Activar autoreproduccion
+            <i class="fa-solid fa-play"></i>
+        </button>
+    </div>
+    <script src="./index.js"></script>
+    <script src="https://kit.fontawesome.com/871fc34738.js" crossorigin="anonymous"></script>
+</body>
+</html>
