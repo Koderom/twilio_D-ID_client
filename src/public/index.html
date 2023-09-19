@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
     <link href="https://fonts.bunny.net/css?family=roboto:300,400,500,700,900" rel="stylesheet" />
     <title>Avatar Twilio</title>
 
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body{
+
+        body {
             font-family: 'Roboto', sans-serif;
             width: 100vw;
             height: 100vh;
@@ -22,7 +25,8 @@
             flex-direction: row;
             background: rgb(36, 36, 36);
         }
-        #chat-container{
+
+        #chat-container {
             box-sizing: content-box;
             width: 25%;
             height: 90%;
@@ -32,19 +36,21 @@
             justify-content: space-around;
             border-radius: 2rem;
             border: 1px solid rgb(107, 107, 107);
-            
+
         }
-        #messages-container{
+
+        #messages-container {
             height: 100%;
             display: flex;
             flex-direction: column;
             overflow-y: scroll;
         }
-        #video-container{
+
+        #video-container {
             width: 75%;
             height: 90%;
-            display: flex; 
-            
+            display: flex;
+
             justify-content: center;
             align-items: center;
             overflow: hidden;
@@ -53,15 +59,19 @@
             border: 1px solid rgb(107, 107, 107);
             background: #74c0c0;
         }
-        video{
+
+        video, .video-js {
             /* width: 100%; */
+            width: 100%;
             height: 100%;
         }
-        img{
+
+        img {
             height: 100%;
         }
-        .message{
-            font-size: 11px;
+
+        .message {
+            font-size: 12px;
             font-weight: 100;
             color: white;
             margin: 0.4rem 1rem;
@@ -69,13 +79,15 @@
             border-radius: 0.5rem;
             background: rgba(116, 116, 116, 0.445);
         }
-        .chat-title{
+
+        .chat-title {
             padding: 1rem;
             border-bottom: 1px solid #6b6b6b;
             font-weight: 500;
             color: white;
         }
-        #auto-rep{
+
+        #auto-rep {
             font-size: 14px;
             color: rgb(0, 0, 0);
             background: rgba(255, 255, 255, 0.829);
@@ -85,28 +97,78 @@
             justify-self: end;
             border-radius: 0.5rem;
         }
-        #auto-rep:disabled{
+
+        #auto-rep:disabled {
             /* color: rgba(0, 0, 0, 0.432); */
             background: rgba(196, 196, 196, 0.829);
         }
+
+        #notificacion-container {
+            width: 100%;
+            margin: 1rem 0;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            color: rgba(255, 255, 255, 0.836);
+            display: none;
+            z-index: 2;
+        }
+
+        .notificacion-message {
+            border: 1px solid rgba(255, 255, 255, 0.74);
+            width: fit-content;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: #3d3d3daf;
+        }
+
+        span {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
     </style>
-    
+
 </head>
+
 <body>
+    <div id="notificacion-container">
+        <div class="notificacion-message" id="notificacion-text-container">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="notificacion">Esta seria la notificacion</span>
+        </div>
+    </div>
     <div id="video-container">
-        <img id="presenter-image" src="https://clips-presenters.d-id.com/amy/jcwCkr1grs/uM00QMwJ9x/image.png" alt="">
-        <video src="" id="video-rep"></video>
+        <!-- <img id="presenter-image" src="https://clips-presenters.d-id.com/amy/jcwCkr1grs/uM00QMwJ9x/image.png" alt="">
+        <video src="" id="video-rep"></video> -->
+        <video id="my-video" class="video-js" controls preload="auto" poster="./assets/default_music_poster.jpg" data-setup="{}" >
+            <!-- <source src="./storage/test.mpeg" type="audio/mpeg" />
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a
+                web browser that
+                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p> -->
+        </video>
     </div>
     <div id="chat-container">
         <div class="chat-title">Mensajes recibidos: </div>
         <div id="messages-container">
-            
+
         </div>
         <button id="auto-rep">Activar autoreproduccion
             <i class="fa-solid fa-play"></i>
         </button>
     </div>
-    <script src="./index.js"></script>
+    <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
     <script src="https://kit.fontawesome.com/871fc34738.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./scripts/service.js"></script>
+    <script src="./index.js"></script>
 </body>
+
 </html>
